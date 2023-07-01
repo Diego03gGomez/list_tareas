@@ -1,7 +1,8 @@
 <template lang="">
     <div>
+    
     <div class="div_input">
-        <input  v-model="valor_input" type="text" placeholder= "Ingrese su tarea"> <label for=""><button ref="boton"  v-on:click="agregar()" class="agregar"><i class="fa-solid fa-plus"></i></button></label>
+        <input class="input" v-model="valor_input" type="text" placeholder= "Ingrese su tarea"> <label for=""><button :disabled="esInputVacio" ref="boton"  v-on:click="agregar()" class="agregar"><i class="fa-solid fa-plus"></i></button></label>
     </div>   
 
 
@@ -9,7 +10,7 @@
 <div class="tareas"  >
 <div  v-for="(e, index) in tareas" :key="index" class="tarea">
     <h1> {{e.nombre}}  </h1>
-<eliminar></eliminar>
+    <button v-on:click="eliminar_tarea(index)"  class="eliminar"><i class="fa-solid fa-trash"></i></button>
 </div>
 </div>
 
@@ -21,10 +22,10 @@
 
 
 <script>
-import eliminar from './eliminar.vue';
+
 export default {
     components: {
-    eliminar,
+
 },
 data() {
     return {
@@ -46,22 +47,34 @@ valor_input :"",
 
 methods: {
     agregar() {
-if(this.valor_input == null){
 
-this.$refs.boton.disabled = false;
-
-}else{
     console.log(this.valor_input);
 this.tareas.push({nombre: this.valor_input, edad: 0});
 this.valor_input = "";
-}
 
-
+    },
+    eliminar_tarea(index) {
+      this.tareas.splice(index, 1)
 
     }
 },
 created () {
 
+},
+computed: {
+   esInputVacio() {
+      return this.valor_input.trim() === "";
+    }
+
+    
+   
+},
+
+mounted () {
+ 
+
+
+    
 },
 
 
@@ -71,16 +84,32 @@ created () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style scoped>
 
 .div_input{
-    background-color: #080f28;
+   
     margin: auto;
     width: 70%;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 10px 0;
+    
 }
 
 .agregar{
@@ -92,23 +121,40 @@ created () {
     cursor: pointer;
     font-size: 30px;
 padding: 0px 20px;
+border-radius: 10px;
 }
 
 .div_input input{
     width: 80%;
     font-size: 20px;
     padding: 10px 0px;
+    border-radius: 10px;
+    border-color: white;
+    border-style: solid;
 }
 
 .tarea{
     background-color: blueviolet;
     margin: 10px 0;
-    padding: 10px 0;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
+    border-radius: 10px;
+    width: 70%;
+    margin: 10px auto;
 }
+
+.eliminar{
+    background-color: blueviolet;
+    border-color: blueviolet;
+    border-style: solid;
+    color: white;
+    font-size: 30px;
+cursor: pointer;
+}
+
 
 
 @media (max-width:1024px){
@@ -117,7 +163,7 @@ padding: 0px 20px;
 }
 
 .div_input input{
-    width: 60%;
+    width: 81%;
 }
 
 }

@@ -10,6 +10,15 @@ import lista from  './components/lista.vue';
 
 
 <template>
+
+  <div id="fondo">
+
+    <header>
+      <div class="cont_header">
+        <h1>Tu Lista <img class="logo" src="../imagenes/logo.jpg" alt=""></h1> 
+      </div>
+    </header>
+
 <div class="contenido">
   <div class="explicacion">
     <h1>Lista de tareas</h1>
@@ -19,23 +28,46 @@ import lista from  './components/lista.vue';
 
 <lista></lista>
 
+</div>
 
-  
-  
 
 </div>
 </template>
 
 <style scoped>
+.cont_header h1{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+  border-radius: 10em;
+  font-size: 9px;
+}
+
+.cont_header{
+  margin: auto;
+  width: 85%;
+  font-size: 25px;
+  color: white;
+}
+
+header{
+  background-color: #080f28;
+}
 
 .contenido{
-  background-color: #080f28;
-  margin: auto;
-  width: 45%;
+  background-color: #080f28a1;
+ 
+ border-radius: 2em;
+  margin:100px auto;
+  width: 65%;
   text-align: center;
+  border-color: #ffffff61;
+    border-style: solid;
 }
 .explicacion{
-  background-color: #080f28;
+
  color: white;
  font-size: 30px;
 }
