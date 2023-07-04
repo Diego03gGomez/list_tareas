@@ -10,7 +10,14 @@
 <div class="tareas"  >
 <div  v-for="(e, index) in tareas" :key="index" class="tarea">
     <h1> {{e.nombre}}  </h1>
-    <button v-on:click="eliminar_tarea(index)"  class="eliminar"><i class="fa-solid fa-trash"></i></button>
+<div class="botones"  >
+
+    <button v-on:click="eliminar_tarea(index)" class="eliminar"><i class="fa-solid fa-trash"></i></button>
+    <button v-on:click="tachar($event)" class="lapiz "  ><i class="fa-solid fa-pencil  "></i></button>
+
+</div>
+
+
 </div>
 </div>
 
@@ -56,6 +63,12 @@ this.valor_input = "";
     eliminar_tarea(index) {
       this.tareas.splice(index, 1)
 
+    },
+
+
+
+    tachar(event){
+event.currentTarget.parentNode.parentNode.querySelector("h1").classList.toggle('tachar');
     }
 },
 created () {
@@ -100,6 +113,25 @@ mounted () {
 
 
 <style scoped>
+
+.tachar{
+    text-decoration: line-through;
+}
+
+
+.botones{
+    display: flex;
+    gap: 10px;
+}
+.lapiz{
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    background-color: blueviolet;
+    border-color: blueviolet;
+    border-style: solid;
+}
+
 
 .div_input{
    
